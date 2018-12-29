@@ -22,9 +22,9 @@ const prepHTML = (data, { html, head, body, state }) => {
 
 const universalLoader = (req, res) => {
   console.log(req.originalUrl);
-  
+
   const context = {}
-  const client = dataClient()
+  const client = dataClient({}, { ssr: true });
   const ServerApp = () => (
     <DataProvider value={client}>
       <StaticRouter location={ req.url } context={context}>

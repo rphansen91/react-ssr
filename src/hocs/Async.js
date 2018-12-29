@@ -9,8 +9,8 @@ export default withDataClient(class Async extends Component {
         this.makeRequest = params => client.makeRequest(name, query, params);
         this.runLatestQuery = takeLatest(
             this.makeRequest, 
-            this.onSuccess, 
-            this.onError
+            (data) => this.setState({ loading: false, data }), 
+            (e) => this.setState({ loading: false, error: e.message }),
         );
         this.state = {
             loading: !data,
@@ -29,16 +29,6 @@ export default withDataClient(class Async extends Component {
     }
     componentWillUnmount() {
         this.runLatestQuery.cancel();
-    }
-    onSuccess = (data) => {
-        if (this.updater.isMounted()) {
-            this.setState({ loading: false, data });
-        }
-    }
-    onError = (e) => {
-        if (this.updater.isMounted()) {
-            this.setState({ loading: false, error: e.message });
-        }
     }
     render() {
         return this.props.children(this.state);

@@ -8,7 +8,7 @@ export const withDataClient = Cmp => props => (
     </Consumer>
 );
 
-export const dataClient = (data = {}) => {
+export const dataClient = (data = {}, { ssr=false }={}) => {
     let res, active = new Set();
     const isReadyPromise = new Promise((_res) => res = _res);
     const tokenize = (name="", params) => name.toString().replace(/\n/g, "") + JSON.stringify(params);
@@ -22,7 +22,7 @@ export const dataClient = (data = {}) => {
                 active.delete(request);
                 if (!active.size) res(data);
             });
-            return request;
+            return ssr ? new Promise(() => {}) : request;
         },
         getCached: (name, params) => {
             const token = tokenize(name, params);

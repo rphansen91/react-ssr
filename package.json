@@ -15,7 +15,8 @@
     "react-scripts": "2.1.2"
   },
   "scripts": {
-    "dev": "NODE_ENV=development nodemon server",
+    "dev": "nodemon --watch src --exec \"yarn build && yarn server\"",
+    "server": "NODE_ENV=development nodemon --watch server server",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
