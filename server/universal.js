@@ -27,7 +27,7 @@ const universalLoader = (req, res) => {
   const client = dataClient({}, { ssr: true });
   const ServerApp = () => (
     <DataProvider value={client}>
-      <StaticRouter location={ req.url } context={context}>
+      <StaticRouter location={req.originalUrl} context={context}>
         <App />
       </StaticRouter>
     </DataProvider>
@@ -37,6 +37,9 @@ const universalLoader = (req, res) => {
   
   client.isReady()
   .then(() => {
+    if (context.url) {
+      return res.redirect(301, context.url);
+    }
     const body = renderToString(<ServerApp />);
     const helmet = Helmet.renderStatic();
     const state = client.extract();

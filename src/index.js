@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import DataProvider, { dataClient } from './dataprovider';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
 
 const initial = window.__SSR_DATA__ || {};
 const client = dataClient(initial);
 
 ReactDOM.render(
     <DataProvider value={client}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </DataProvider>
     , document.getElementById('root'));
 
