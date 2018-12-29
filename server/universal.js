@@ -4,7 +4,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
-import DataProvider, { dataClient } from '../src/dataprovider';
+import { SSRDataProvider, createSSRDataClient } from 'data-hoc';
 import App from '../src/App';
 import manifest from "../build/asset-manifest.json"
 
@@ -24,13 +24,13 @@ const universalLoader = (req, res) => {
   console.log(req.originalUrl);
 
   const context = {}
-  const client = dataClient({}, { ssr: true });
+  const client = createSSRDataClient({}, { ssr: true });
   const ServerApp = () => (
-    <DataProvider value={client}>
+    <SSRDataProvider value={client}>
       <StaticRouter location={req.originalUrl} context={context}>
         <App />
       </StaticRouter>
-    </DataProvider>
+    </SSRDataProvider>
   );
 
   renderToString(<ServerApp />);

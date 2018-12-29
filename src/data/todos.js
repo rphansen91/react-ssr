@@ -1,5 +1,5 @@
 import React from 'react';
-import AsyncHOC from '../hocs/Async';
+import { AsyncHOC } from 'data-hoc';
 
 export const fetchTodosQuery = () => fetch(`https://jsonplaceholder.typicode.com/todos`).then((res) => res.json());
 

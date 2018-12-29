@@ -1,5 +1,5 @@
 import React from 'react';
-import AsyncHOC from '../hocs/Async';
+import { AsyncHOC } from 'data-hoc';
 
 export const fetchJediQuery = (i) => fetch(`https://swapi.co/api/people/${i}/?schema=json`).then((res) => res.json());
 
