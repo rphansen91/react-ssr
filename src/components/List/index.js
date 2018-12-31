@@ -2,13 +2,13 @@ import React from 'react';
 
 export default source => ({ loading, error, data }) => (
     loading
-    ? <h1>Loading</h1>
+    ? <p>Loading...</p>
     : error
-    ? <h1>{error}</h1>
+    ? <p>{error}</p>
     : data && data.length
     ? (
-        <ul>
-        {data.map((item, i) => <li key={i}>{item[source]}</li>)}
+        <ul className="list-group mb-4">
+            {data.map((item, i) => <li className="list-group-item" key={i}>{item[source]}</li>)}
         </ul>
     )
     : <div>No results</div>

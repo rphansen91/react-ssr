@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import DataProvider, { dataClient } from './dataprovider';
+import { SSRDataProvider, createSSRDataClient } from 'data-hoc';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 const initial = window.__SSR_DATA__ || {};
-const client = dataClient(initial);
+const client = createSSRDataClient(initial);
 
 ReactDOM.render(
-    <DataProvider value={client}>
+    <SSRDataProvider value={client}>
         <BrowserRouter>
             <App />
         </BrowserRouter>
-    </DataProvider>
+    </SSRDataProvider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
