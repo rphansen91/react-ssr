@@ -41,8 +41,13 @@ export class NumberInput extends Input {
     }
     renderInput () {
         const input = super.renderInput();
-        return cloneElement(input, {
-            type: "number"
-        });
+        return (
+            <div className="form-group">
+                {cloneElement(input, { 
+                    className: "form-control",
+                    type: "number" 
+                })}
+            </div>
+        );
     }
 }

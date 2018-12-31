@@ -2875,13 +2875,14 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-data-hoc@^0.0.0-alpha.1:
-  version "0.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/data-hoc/-/data-hoc-0.0.0-alpha.1.tgz#3316b03a5333e4bd87430498732518fc87d9225c"
-  integrity sha512-2ykuRZgMmPJl8+5/v5wVeR9DFSyLM/RqZKeFzUpiRz5LcCczBXfg8xKXbaO3i4KnfUSgF/7UOtf8pfHSR7GlkA==
+data-hoc@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/data-hoc/-/data-hoc-1.0.1.tgz#4b2739a774767570ca4e344bf3af15789fb7e3b1"
+  integrity sha512-6Gkt7Dh1pd9XAffvjPB8aXCDT/PJz4sT+zKHE/RBCe0S9/qQ0OMH1ZFyJ5Z2+ble/H8EoS6yWq185lyrDPaSSA==
   dependencies:
     "@types/react" "^16.7.18"
     react "^16.7.0"
+    utility-types "^3.2.0"
 
 data-urls@^1.0.0, data-urls@^1.1.0:
   version "1.1.0"
@@ -9919,6 +9920,11 @@ utila@^0.4.0, utila@~0.4:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/utila/-/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
+
+utility-types@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.2.0.tgz#e0ce64cc278768f0e3230a17e9c22228df099cc8"
+  integrity sha512-pg3spWUFl9NjKuJRfFXvPSBVBsMFGyDujf95HkRGxYa3JoD6bqabcL48FeWjbFdnumDLEh3Lr18U9P1IXL0yXA==
 
 utils-merge@1.0.1:
   version "1.0.1"
