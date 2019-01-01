@@ -3,8 +3,7 @@ import fs from 'fs';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { StaticRouter } from 'react-router-dom';
-import { renderToString } from 'react-dom/server';
-import { SSRDataProvider, createSSRDataClient } from 'data-hoc';
+import { SSRDataProvider, createSSRDataClient, renderToStringWithData } from 'data-hoc';
 import App from '../src/App';
 import manifest from "../build/asset-manifest.json"
 
@@ -31,16 +30,13 @@ const universalLoader = (req, res) => {
         <App />
       </StaticRouter>
     </SSRDataProvider>
-  );
-
-  renderToString(<ServerApp />);
+  )
   
-  client.isReady()
-  .then(() => {
+  renderToStringWithData(client, ServerApp)
+  .then((body) => {
     if (context.url) {
       return res.redirect(301, context.url);
     }
-    const body = renderToString(<ServerApp />);
     const helmet = Helmet.renderStatic();
     const state = client.extract();
     const html = prepHTML(htmlData, {
