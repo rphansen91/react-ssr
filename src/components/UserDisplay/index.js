@@ -51,7 +51,7 @@ export default Setter("open", false, ({ user, todos, open, setopen }) => (
                             transform: open ? "rotate(180deg)": "rotate(0deg)",
                             transition: "transform 0.2s ease-in"
                         }}
-                        className="fa fa-arrow-down" 
+                        className="fa fa-arrow-down cursor-pointer" 
                     />
                 </div>
             </div>

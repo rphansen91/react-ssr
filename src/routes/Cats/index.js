@@ -1,6 +1,8 @@
 import React from 'react';
 import withPaginator from '../../hocs/Paginator';
 import { FetchCats } from '../../data/cats';
+import Footer from '../../components/Footer';
+import Page from '../Page';
 
 const Card = ({ url }) => (
     <div className="card">
@@ -17,9 +19,9 @@ const Card = ({ url }) => (
     </div>
 )
 
-const DisplayCats = ({ loading, error, data }) => (
+const DisplayCats = ({ limit, data }) => (
     <div className="row">
-        {(data || Array(6).fill({})).map((item, i) => 
+        {(data || Array(limit).fill({})).map((item, i) => 
             <div className="col-4 mb-4" key={i}>
                 <Card url={item.url} />
             </div>)
@@ -27,21 +29,16 @@ const DisplayCats = ({ loading, error, data }) => (
     </div>
 )
 
-export default withPaginator(({ 
-    page=0,
-    paginator
-}) => (
-    <div>
-        <div className="jumbotron rounded-0">
-            <h1>Cats</h1>    
+export default withPaginator(({ limit, page, paginator }) => (
+    <Page 
+        header={<h1>Cats</h1>}
+        footer={<Footer />}
+    >
+        <FetchCats params={{ page, limit, order: "DESC" }}>
+            {r => <DisplayCats {...r} limit={limit} />}
+        </FetchCats>
+        <div className="d-flex justify-content-center">
+            {paginator}
         </div>
-        <div className="container">
-            <FetchCats params={{ page, limit: 6, order: "DESC" }}>
-                {DisplayCats}
-            </FetchCats>
-            <div className="d-flex justify-content-center">
-                {paginator}
-            </div>
-        </div>
-    </div>
+    </Page>
 ))

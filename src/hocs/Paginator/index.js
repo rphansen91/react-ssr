@@ -10,8 +10,8 @@ const Link = ({ active, onClick, children }) => (
 export default (Cmp) => class extends Component {
     range = 3
     state = {
-        page: 0,
         limit: 6,
+        page: 0,
         order: "DESC",
     }
 
@@ -25,6 +25,7 @@ export default (Cmp) => class extends Component {
         if (!page) return null;
         return (
             <Link
+                key="prev"
                 onClick={() => this.onPrev()}
             >
                 &laquo;
@@ -40,6 +41,7 @@ export default (Cmp) => class extends Component {
     next () {
         return (
             <Link
+                key="next"
                 onClick={() => this.onNext()}
             >
                 &raquo;
@@ -58,6 +60,7 @@ export default (Cmp) => class extends Component {
     visibleLinks () {
         return this.visiblePages().map(page => (
             <Link
+                key={page}
                 active={page === this.state.page}
                 onClick={() => this.setState({ page })}
             >
